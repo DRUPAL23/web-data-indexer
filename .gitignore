@@ -1,0 +1,15 @@
+# Byte-compiled / env
+__pycache__/
+*.pyc
+.env
+
+# Docker
+**/node_modules
+**/dist
+
+# Local Vite dev artifacts
+.vite
+
+# Editor
+.vscode/
+.idea/
