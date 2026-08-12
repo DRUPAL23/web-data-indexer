@@ -26,6 +26,14 @@ CREATE TABLE IF NOT EXISTS entities (
   UNIQUE(canonical_name, entity_type)
 );
 
+CREATE TABLE IF NOT EXISTS document_entities (
+  document_id BIGINT NOT NULL REFERENCES documents(id) ON DELETE CASCADE,
+  entity_id BIGINT NOT NULL REFERENCES entities(id) ON DELETE CASCADE,
+  mention_count INTEGER NOT NULL DEFAULT 1,
+  PRIMARY KEY (document_id, entity_id)
+);
+CREATE INDEX IF NOT EXISTS document_entities_entity_idx ON document_entities(entity_id);
+
 CREATE TABLE IF NOT EXISTS relationships (
   id BIGSERIAL PRIMARY KEY,
   source_entity_id BIGINT NOT NULL REFERENCES entities(id) ON DELETE CASCADE,
